@@ -1,0 +1,291 @@
+{
+  // EdgeTracker Dashboard UI Handoff (derived from provided screenshot)
+  "meta": {
+    "product": "EdgeTracker",
+    "surface": "Desktop analytics dashboard",
+    "visualStyle": [
+      "Dark-first glassmorphism",
+      "Soft neon fintech gradients",
+      "Rounded cards with subtle borders and inner glow"
+    ],
+    "baseGrid": {
+      "container": "max-w-screen-2xl",
+      "horizontalPadding": "px-4 sm:px-6 lg:px-8",
+      "verticalPadding": "py-4 md:py-6 lg:py-8",
+      "gap": "gap-3 md:gap-4 lg:gap-5"
+    }
+  },
+
+  "responsiveBreakpoints": {
+    // Tailwind defaults
+    "sm": "640px",
+    "md": "768px",
+    "lg": "1024px",
+    "xl": "1280px",
+    "2xl": "1536px",
+    "behavior": {
+      "base_<sm": "Single-column stack; collapse top nav to icon/hamburger + user chip; cards full width.",
+      "sm": "Keep single column but compact card spacing; KPI cards become swipeable row if needed.",
+      "md": "Two-column content starts; header nav can stay horizontal with truncation.",
+      "lg": "Primary desktop layout begins: left content area + right sidebar.",
+      "xl": "Balanced spacing and full card hierarchy as in screenshot.",
+      "2xl": "Increased breathing room; maintain max width and avoid over-stretching charts."
+    }
+  },
+
+  "layout": {
+    "canvas": {
+      "shape": "Large rounded shell (~24-28px radius)",
+      "background": "Deep navy gradient with radial blue blooms in top-right and center-right",
+      "surfaceBorder": "1px low-opacity blue-gray",
+      "globalShadow": "Large, soft outer shadow"
+    },
+    "regions": [
+      {
+        "name": "Top bar",
+        "height": "~72-88px",
+        "contents": [
+          "Brand mark + wordmark (left)",
+          "Segmented navigation pills (center)",
+          "Settings icon, user profile chip (right)"
+        ]
+      },
+      {
+        "name": "Dashboard heading row",
+        "contents": [
+          "H1: My Dashboard",
+          "Date range dropdown",
+          "Download data button (right aligned)"
+        ]
+      },
+      {
+        "name": "Main content",
+        "structure": "Left analytics grid (approx 75-80%) + right utility rail (approx 20-25%)"
+      }
+    ]
+  },
+
+  "designTokens": {
+    "color": {
+      "primaryPalette": {
+        "50": "#EAF2FF",
+        "100": "#D7E6FF",
+        "200": "#B3D0FF",
+        "300": "#86B2FF",
+        "400": "#5D95F8",
+        "500": "#3F7DE8",
+        "600": "#2E63C2",
+        "700": "#234C96",
+        "800": "#1A386E",
+        "900": "#102446"
+      },
+      "secondaryPalette": {
+        "50": "#EAFBFF",
+        "100": "#CFF5FF",
+        "200": "#A9EAFF",
+        "300": "#7EDDFB",
+        "400": "#56CDEB",
+        "500": "#35B3D0",
+        "600": "#288EA6",
+        "700": "#1E6D7F",
+        "800": "#174F5D",
+        "900": "#10343E"
+      },
+      "grays": {
+        "bg-950": "#050B16",
+        "bg-900": "#091224",
+        "bg-850": "#0E192B",
+        "surface-800": "#132238",
+        "surface-700": "#1A2D46",
+        "border-600": "#2B3F58",
+        "text-100": "#F2F6FB",
+        "text-300": "#B6C3D4",
+        "text-400": "#8A9AAF",
+        "text-500": "#6E7F95"
+      },
+      "accents": {
+        "success": "#2FD084",
+        "warning": "#D9E13A",
+        "danger": "#F1673A",
+        "info": "#5A9DFF",
+        "aiGlow": "#6EA8FF",
+        "glassHighlight": "rgba(255,255,255,0.14)",
+        "chartAreaGlow": "rgba(104,157,255,0.35)"
+      },
+      "complexMedia": {
+        "pageGradient": "radial-gradient(80% 90% at 88% 8%, rgba(80,130,255,0.28), transparent 55%), linear-gradient(180deg, #0A1426 0%, #060B16 100%)",
+        "cardGradientDefault": "linear-gradient(160deg, rgba(31,48,74,0.68) 0%, rgba(16,26,40,0.78) 100%)",
+        "aiCardGradient": "radial-gradient(circle at 20% 0%, rgba(97,142,255,0.45), rgba(22,35,58,0.92) 58%)",
+        "activePillGradient": "linear-gradient(180deg, rgba(40,65,103,0.95), rgba(17,30,50,0.95))"
+      }
+    },
+    "radius": {
+      "shell": "rounded-3xl",
+      "card": "rounded-3xl",
+      "control": "rounded-2xl",
+      "chip": "rounded-xl",
+      "button": "rounded-2xl"
+    },
+    "blur": {
+      "glass": "backdrop-blur-md",
+      "soft": "blur-[1px] to blur-sm for glows"
+    },
+    "stroke": {
+      "subtle": "1px rgba(152,180,220,0.20)",
+      "strong": "1px rgba(152,180,220,0.34)"
+    },
+    "shadow": {
+      "card": "0 8px 28px rgba(4,10,20,0.40)",
+      "button": "inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 16px rgba(3,8,16,0.35)",
+      "activeGlow": "0 0 0 1px rgba(95,142,255,0.35), 0 10px 28px rgba(42,91,179,0.35)"
+    },
+    "typography": {
+      "fontFamily": "Clean geometric sans-serif",
+      "h1": "text-5xl/none weight-400 tracking-tight",
+      "cardTitle": "text-[34-52px] for KPI numbers, text-xl for labels",
+      "body": "text-sm to text-base",
+      "meta": "text-xs to text-sm, higher transparency"
+    }
+  },
+
+  "componentSpec": {
+    "topNavigation": {
+      "brand": "Compact icon + wordmark with left inset spacing",
+      "tabs": ["Dashboard", "Analytics", "Reporting", "Documentation"],
+      "tabStyle": {
+        "default": "Glass pill, dark translucent fill, subtle border",
+        "active": "Brighter gradient fill + stronger glow",
+        "padding": "px-6 py-3",
+        "iconSupport": false
+      },
+      "rightControls": [
+        "Settings square button",
+        "Profile chip with avatar, name, role, chevron"
+      ]
+    },
+
+    "headerControls": {
+      "title": "My Dashboard",
+      "dateFilter": "Label + selected range + chevron; compact dropdown control",
+      "ctaDownload": "Icon-leading secondary button"
+    },
+
+    "analyticsCards": [
+      {
+        "name": "Revenue",
+        "elements": [
+          "Icon chip",
+          "Title + subtitle",
+          "Open/expand icon button",
+          "Primary KPI number",
+          "Positive AI badge",
+          "Mini area chart with month x-axis labels"
+        ]
+      },
+      {
+        "name": "Customers",
+        "elements": [
+          "KPI + positive badge",
+          "Bar-series mini chart with one emphasized month"
+        ]
+      },
+      {
+        "name": "Lead Conversion",
+        "elements": [
+          "KPI + positive badge",
+          "Horizontal progress scale from generated leads to converted leads",
+          "Value pills on bars"
+        ]
+      },
+      {
+        "name": "Expenses",
+        "elements": [
+          "3 category KPIs (development, sales, support)",
+          "Muted monthly bars in background",
+          "Active month highlight + tooltip overlay"
+        ]
+      },
+      {
+        "name": "NPS",
+        "elements": [
+          "Score with negative AI delta",
+          "CTA button: View feedback",
+          "Dot clusters grouped by promoters/neutrals/detractors with semantic colors"
+        ]
+      }
+    ],
+
+    "rightRail": {
+      "insightsCard": {
+        "content": [
+          "Title + icon",
+          "Insight headline",
+          "Explanatory paragraph",
+          "Potential savings KPI",
+          "Micro trend sparkline",
+          "Two CTAs: Hide / Review now"
+        ],
+        "hierarchy": "Primary action has high-contrast light fill"
+      },
+      "aiAssistantCard": {
+        "content": [
+          "AI dot/avatar",
+          "Short helper prompt",
+          "Input placeholder",
+          "Voice/mic action button"
+        ],
+        "visual": "Blue spotlight gradient with glass input"
+      }
+    }
+  },
+
+  "interactionAndStateGuidelines": {
+    "hover": {
+      "cards": "Increase border opacity and raise by 1-2px",
+      "buttons": "Slight brighten + shadow elevation",
+      "chartData": "Show tooltip and accent glow"
+    },
+    "focus": {
+      "keyboardRing": "2px primary-400/60 outer ring",
+      "accessibility": "Ensure controls remain distinguishable from card borders"
+    },
+    "activeSelected": {
+      "navTab": "Use active pill gradient + glow",
+      "chartPoint": "Increase fill + show value badge"
+    },
+    "disabled": {
+      "opacity": "~45-55%",
+      "cursor": "not-allowed"
+    }
+  },
+
+  "lightModeTranslation": {
+    "strategy": "Maintain same structure/spacing but invert surfaces to cool off-white and preserve blue accents.",
+    "tokenShift": {
+      "background": "gray-50 to primary-50 gradient",
+      "cardSurface": "white with faint blue tint",
+      "textPrimary": "gray-900",
+      "textSecondary": "gray-600",
+      "border": "gray-200/blue-100",
+      "chartGrid": "gray-200",
+      "primaryElements": "Keep primary-500/600 for key metrics and active states",
+      "successDanger": "Preserve semantics with slightly deeper shades for contrast"
+    },
+    "lightSpecificTweaks": [
+      "Reduce glow intensity by ~30-40% to avoid bloom.",
+      "Use darker text in chips/badges that were bright-on-dark.",
+      "Buttons that are outlined in dark mode can become subtle filled controls in light mode."
+    ]
+  },
+
+  "spacingAndSizing": {
+    "outerMargin": "16px mobile, 24px tablet, 32px desktop",
+    "cardPadding": "16px mobile, 20px desktop",
+    "interCardGap": "12px mobile, 16px desktop",
+    "kpiNumberScale": "text-4xl to text-5xl depending on card prominence",
+    "controlHeight": "40px compact, 48px standard",
+    "iconChip": "36-40px"
+  },
+
+  "implementationPrompt": "```md\nDesign and build a polished EdgeTracker analytics dashboard with a dark-first, glassmorphic fintech aesthetic and a faithful light-mode counterpart. Keep the overall composition: top navigation and profile controls, a heading/filter/action row, a KPI-heavy analytics grid on the left, and insights/assistant utility cards on the right. Use the provided token system consistently: primary and secondary palettes for brand/interactive emphasis, neutral grays for structure and readability, and accent colors only for semantic data states and rich media moments (glows, gradients, chart focus). Preserve large rounded containers, soft borders, restrained shadows, and clear visual hierarchy across cards, controls, and chart snippets. Ensure responsive behavior follows the specified breakpoints while keeping card hierarchy, spacing rhythm, and data legibility intact at every size.\n```"
+}
